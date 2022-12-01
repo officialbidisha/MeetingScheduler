@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-import InfoOfMeetings from './pages/InfoOfMeetings';
+import logo from "./logo.svg";
+import "./App.css";
+import InfoOfMeetings from "./pages/InfoOfMeetings";
+import AddMeeting from "./pages/AddMeeting";
+import FreeRooms from "./pages/FreeRooms";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <InfoOfMeetings></InfoOfMeetings>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<InfoOfMeetings />}>
+            <Route path="meetings" element={<InfoOfMeetings />} />
+            <Route path="addmeetings" element={<AddMeeting />} />
+            <Route path="freerooms" element={<FreeRooms />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

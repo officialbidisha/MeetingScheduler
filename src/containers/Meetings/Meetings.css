@@ -1,0 +1,15 @@
+.meeting-container {
+    background-color: #03045e;
+    color: #caf0f8;
+    border-radius: 10px;
+}
+.header {
+    margin-bottom: 2px;
+}
+.meetings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: #caf0f8;
+}

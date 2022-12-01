@@ -1,0 +1,9 @@
+.input-container label {
+  margin: 5px 2px;
+  display: block;
+}
+.input-container input {
+  display: block;
+  margin: auto;
+  padding: 8px 8px;
+}
