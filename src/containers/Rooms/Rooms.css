@@ -1,0 +1,15 @@
+.rooms-container{    
+    background-color: #34a0a4;
+    color: #d9ed92;
+    border-radius: 10px;
+    padding: 2px;
+    margin: 2px;
+}
+
+.room{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: #d9ed92;
+}

@@ -1,0 +1,30 @@
+{
+    "data": {
+      "MeetingRooms": [
+        {
+          "name": "Punjab",
+          "floor": 7,
+          "building": {
+            "name": "Building 8"
+          },
+          "meetings": [
+            {
+              "title": "Booked for Interview"
+            }
+          ]
+        },
+        {
+          "name": "Ganga",
+          "floor": 8,
+          "building": {
+            "name": "Building 8"
+          },
+          "meetings": [
+            {
+              "title": "Booked for Interview"
+            }
+          ]
+        }
+      ]
+    }
+  }
