@@ -15,10 +15,9 @@ const InfoOfMeetings = () => {
   const [buildings, setBuildings] = useState([]);
   const navigate = useNavigate();
 
-
   const redirectToMeetingPage = () => {
-    navigate('/addmeetings');
-  }
+    navigate("/addmeetings");
+  };
 
   useEffect(() => {
     let meetingList = [];
@@ -33,7 +32,7 @@ const InfoOfMeetings = () => {
     });
     let currentDate = getCurrentDate();
     let currentTime = getCurrentTime(true, true, false);
-    debugger;
+
     let overLappingIntervals = getMeetings(
       currentDate,
       currentTime,
@@ -41,7 +40,8 @@ const InfoOfMeetings = () => {
     );
     // console.log("overlapping intervals", overLappingIntervals);
     setBuildings(buildingNames);
-    setMeetings(overLappingIntervals.totalNumberOfMeetingsToday);
+    setMeetings(meetingList.length);
+    // setMeetings(overLappingIntervals.totalNumberOfMeetingsToday);
     setCurrentMeetings(overLappingIntervals.currentMeetings);
   }, [roomData, buildingData]);
 
