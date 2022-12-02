@@ -97,6 +97,7 @@ const AddMeeting = () => {
           </select>
         </div>
       </form>
+      <button className="next-btn">Next</button>
     </>
   );
 };

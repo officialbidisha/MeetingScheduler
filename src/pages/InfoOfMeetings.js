@@ -5,6 +5,7 @@ import roomData from "../meetingRooms.json";
 import Rooms from "../containers/Rooms";
 import Meetings from "../containers/Meetings";
 import { getCurrentDate, getCurrentTime, findGreaterTime } from "../utils";
+import { useNavigate } from "react-router-dom";
 
 const InfoOfMeetings = () => {
   const [totalBuildings, setTotalBuildings] = useState(0);
@@ -12,6 +13,13 @@ const InfoOfMeetings = () => {
   const [meetings, setMeetings] = useState(0);
   const [currentMeetings, setCurrentMeetings] = useState(null);
   const [buildings, setBuildings] = useState([]);
+  const navigate = useNavigate();
+
+
+  const redirectToMeetingPage = () => {
+    navigate('/addmeetings');
+  }
+
   useEffect(() => {
     let meetingList = [];
     let buildingNames = [];
@@ -38,7 +46,6 @@ const InfoOfMeetings = () => {
   }, [roomData, buildingData]);
 
   const getMeetings = (currentDate, currentTime, meetings) => {
-    debugger;
     let totalNumberOfMeetingsToday = 0;
     let currentMeetings = 0;
     /**
@@ -72,7 +79,7 @@ const InfoOfMeetings = () => {
         total_meetings={meetings}
         current_meetings_at_the_moment={currentMeetings}
       ></Meetings>
-      <button>Add a Meeting</button>
+      <button onClick={redirectToMeetingPage}>Add a Meeting</button>
     </Fragment>
   );
 };
