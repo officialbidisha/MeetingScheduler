@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
 import MeetingRoom from "./MeetingRoom";
 import buildingData from "../buildings.json";
+import { useLocation } from "react-router-dom";
+
 const FreeRooms = (props) => {
-  let { buildingName } = props;
+  const {state} = useLocation();
+  let {date, startTime, endTime, selectedBuildingName} = state;
   const [meetings, setMeetings] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState(null);
 
   const saveData = () => {
     console.log(selectedRoom);
+    console.log(date, startTime, endTime);
+
   };
 
   useEffect(() => {
     let meetingArr = [];
-    buildingData.data.Buildings.forEach((x) => {
-      if (x.name === buildingName) {
+    const buildingDatas = buildingData.data.Buildings;
+    buildingDatas.forEach((x) => {
+      if (x.name === selectedBuildingName) {
         meetingArr.push(x);
       }
     });
     setMeetings(meetingArr);
-  }, [buildingName]);
+  }, [selectedBuildingName]);
 
   const setMeeting = (place, building, name) => {
     setSelectedRoom({ place, building, name });
@@ -34,7 +40,7 @@ const FreeRooms = (props) => {
               <MeetingRoom
                 onClickHandler={setMeeting}
                 place={meet.name}
-                building={buildingName}
+                building={selectedBuildingName}
                 name={meet.meetings[i].title}
               ></MeetingRoom>
             );

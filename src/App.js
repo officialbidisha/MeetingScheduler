@@ -6,6 +6,24 @@ import FreeRooms from "./pages/FreeRooms";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// import { useQuery, gql } from "@apollo/client";
+// const QUERY = gql`
+//   {
+//     Buildings {
+//       name
+//       meetingRooms {
+//         name
+//         meetings {
+//           title
+//           date
+//           startTime
+//           endTime
+//         }
+//       }
+//     }
+//   }
+// `;
+
 function App() {
   return (
     <div className="App">

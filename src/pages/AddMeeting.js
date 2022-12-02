@@ -3,6 +3,7 @@ import { findGreaterTime } from "../utils";
 import Dropdown from "../components/Dropdown";
 import "./AddMeeting.css";
 import buildingData from "../buildings.json";
+import { useNavigate } from "react-router-dom";
 const AddMeeting = () => {
   const [date, setDate] = useState(null);
   const [startTime, setStartTime] = useState(null);
@@ -11,10 +12,24 @@ const AddMeeting = () => {
   const startTimeRef = useRef(null);
   const [buildings, setBuildings] = useState([]);
 
+  const navigate = useNavigate();
+
+  const redirectToMeetingRoom = (date, startTime, endTime, selectedBuildingName) => {
+      let obj = {
+        date, startTime, endTime, selectedBuildingName
+      }
+      navigate('/freerooms', { state: { date, startTime, endTime, selectedBuildingName} });
+  }
+  
+
+  const getSelectedValue = (event) => {
+    setSelectedBuildingName(event.target.value);
+  }
+
   /**
    * Select state
    */
-  const [optionState, setOptionState] = useState(null);
+  const [selectedBuildingName, setSelectedBuildingName] = useState(null);
 
   useEffect(() => {
     const buildingDatas = buildingData.data.Buildings;
@@ -86,10 +101,10 @@ const AddMeeting = () => {
         </div>
         <div className="input-container">
           <label>Select Buildings</label>
-          <select value={optionState}>
+          <select value={selectedBuildingName} onChange={getSelectedValue}>
             {buildings.map((building) => {
               return (
-                <option value={building} selected={optionState == building}>
+                <option value={building} selected={selectedBuildingName == building}>
                   {building}
                 </option>
               );
@@ -97,7 +112,7 @@ const AddMeeting = () => {
           </select>
         </div>
       </form>
-      <button className="next-btn">Next</button>
+      <button className="next-btn" onClick={() => redirectToMeetingRoom(date, startTime, endTime, selectedBuildingName)}>Next</button>
     </>
   );
 };
