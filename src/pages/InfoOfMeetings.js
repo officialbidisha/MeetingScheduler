@@ -39,7 +39,7 @@ const InfoOfMeetings = () => {
       currentTime,
       meetingList
     );
-    console.log("overlapping intervals", overLappingIntervals);
+    // console.log("overlapping intervals", overLappingIntervals);
     setBuildings(buildingNames);
     setMeetings(overLappingIntervals.totalNumberOfMeetingsToday);
     setCurrentMeetings(overLappingIntervals.currentMeetings);

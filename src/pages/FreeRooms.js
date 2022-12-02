@@ -4,15 +4,30 @@ import buildingData from "../buildings.json";
 import { useLocation } from "react-router-dom";
 
 const FreeRooms = (props) => {
-  const {state} = useLocation();
-  let {date, startTime, endTime, selectedBuildingName} = state;
+  const { state } = useLocation();
+  let { date, startTime, endTime, selectedBuildingName } = state;
   const [meetings, setMeetings] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState(null);
 
   const saveData = () => {
-    console.log(selectedRoom);
-    console.log(date, startTime, endTime);
-
+    if (selectedRoom) {
+      // console.log(selectedRoom);
+      // console.log(date, startTime, endTime);
+      alert(
+        "Meeting added on " +
+          date +
+          " from " +
+          startTime +
+          " to " +
+          endTime +
+          " on " +
+          selectedRoom.building +
+          " with purose " +
+          selectedRoom.name +
+          " at " +
+          selectedRoom.place
+      );
+    }
   };
 
   useEffect(() => {
@@ -38,6 +53,7 @@ const FreeRooms = (props) => {
           for (let i = 0; i < meet.meetings.length; i++) {
             return (
               <MeetingRoom
+                key={i}
                 onClickHandler={setMeeting}
                 place={meet.name}
                 building={selectedBuildingName}
