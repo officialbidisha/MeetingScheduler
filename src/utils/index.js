@@ -27,6 +27,7 @@ export const getCurrentTime = (
   return time.toLocaleString("en-US", { ...temp, hour12: false });
 };
 
+// 19:00 - 20:00
 export const findGreaterTime = function (time1, time2) {
   let [time1hr, time1sec] = time1.split(":");
   let [time2hr, time2sec] = time2.split(":");
@@ -42,6 +43,9 @@ export const findGreaterTime = function (time1, time2) {
     return time2;
   }
 };
+
+//  [19:00 - 21:00], [20:00 - 22:00] => [19:00 - 22:00]
+//current time : [20:35]
 
 export const mergeIntervals = function (intervals) {
   let sortedIntervals = intervals.sort(

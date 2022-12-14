@@ -14,18 +14,28 @@ const AddMeeting = () => {
 
   const navigate = useNavigate();
 
-  const redirectToMeetingRoom = (date, startTime, endTime, selectedBuildingName) => {
-      let obj = {
-        date, startTime, endTime, selectedBuildingName
-      }
-      navigate('/freerooms', { state: { date, startTime, endTime, selectedBuildingName} });
-  }
-  
+  const redirectToMeetingRoom = (
+    date,
+    startTime,
+    endTime,
+    selectedBuildingName
+  ) => {
+    let obj = {
+      date,
+      startTime,
+      endTime,
+      selectedBuildingName,
+    };
+    navigate("/freerooms", {
+      state: { date, startTime, endTime, selectedBuildingName },
+    });
+  };
+
 
   const getSelectedValue = (event) => {
+    debugger;
     setSelectedBuildingName(event.target.value);
-  }
-
+  };
   /**
    * Select state
    */
@@ -49,11 +59,12 @@ const AddMeeting = () => {
   };
 
   const handleEndTimeChange = (e) => {
+
     if (
       findGreaterTime(startTimeRef.current.value, e.target.value) ===
-      startTimeRef
+      startTimeRef.current.value
     ) {
-      setErrors((prev) => [...prev, { end_time: true }]);
+      return;
     }
     setEndTime(e.target.value);
   };
@@ -71,6 +82,7 @@ const AddMeeting = () => {
               data-date=""
               data-date-format="DD/MM/YYYY"
               onChange={handleDateChange}
+              required
             />{" "}
           </label>
         </div>
@@ -84,6 +96,7 @@ const AddMeeting = () => {
               onChange={handleStartTimeChange}
               value={startTime}
               ref={startTimeRef}
+              required
             />
           </label>
         </div>
@@ -96,6 +109,7 @@ const AddMeeting = () => {
               name="endTime"
               value={endTime}
               onChange={handleEndTimeChange}
+              required
             />
           </label>
         </div>
@@ -104,7 +118,10 @@ const AddMeeting = () => {
           <select value={selectedBuildingName} onChange={getSelectedValue}>
             {buildings.map((building) => {
               return (
-                <option value={building} selected={selectedBuildingName == building}>
+                <option
+
+                  selected={selectedBuildingName == building}
+                >
                   {building}
                 </option>
               );
@@ -112,7 +129,14 @@ const AddMeeting = () => {
           </select>
         </div>
       </form>
-      <button className="next-btn" onClick={() => redirectToMeetingRoom(date, startTime, endTime, selectedBuildingName)}>Next</button>
+      <button
+        className="next-btn"
+        onClick={() =>
+          redirectToMeetingRoom(date, startTime, endTime, selectedBuildingName)
+        }
+      >
+        Next
+      </button>
     </>
   );
 };

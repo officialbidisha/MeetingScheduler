@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import MeetingRoom from "./MeetingRoom";
 import buildingData from "../buildings.json";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const FreeRooms = (props) => {
   const { state } = useLocation();
   let { date, startTime, endTime, selectedBuildingName } = state;
   const [meetings, setMeetings] = useState([]);
   const [selectedRoom, setSelectedRoom] = useState(null);
+  const navigate = useNavigate();
 
   const saveData = () => {
     if (selectedRoom) {
-      // console.log(selectedRoom);
-      // console.log(date, startTime, endTime);
       alert(
         "Meeting added on " +
           date +
@@ -27,12 +26,18 @@ const FreeRooms = (props) => {
           " at " +
           selectedRoom.place
       );
+
+      if (window.confirm) {
+        navigate("/meetings");
+      }
     }
   };
 
   useEffect(() => {
     let meetingArr = [];
     const buildingDatas = buildingData.data.Buildings;
+    debugger;
+    console.log("bd"+ buildingDatas+" "+selectedBuildingName);
     buildingDatas.forEach((x) => {
       if (x.name === selectedBuildingName) {
         meetingArr.push(x);
