@@ -66,6 +66,7 @@ const AddMeeting = () => {
     ) {
       return;
     }
+    setErrors(null)
     setEndTime(e.target.value);
   };
 
@@ -112,6 +113,12 @@ const AddMeeting = () => {
               required
             />
           </label>
+          {errors.length > 0 && errors[0].end_time ? (
+            <p style={{ color: "red", fontSize: "10px" }}>
+              {" "}
+              Start time is greater than end time
+            </p>
+          ) : null}
         </div>
         <div className="input-container">
           <label>Select Buildings</label>
@@ -120,6 +127,7 @@ const AddMeeting = () => {
               return (
                 <option
 
+                  value={building}
                   selected={selectedBuildingName == building}
                 >
                   {building}
@@ -134,6 +142,7 @@ const AddMeeting = () => {
         onClick={() =>
           redirectToMeetingRoom(date, startTime, endTime, selectedBuildingName)
         }
+        disabled={errors.length > 0}
       >
         Next
       </button>
